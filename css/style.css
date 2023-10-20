@@ -31,6 +31,7 @@ body {
     color: #444;
     line-height: 1.9;
     background-color: #f3f3f3;
+    overflow-x: hidden;
 }
 
 /* GENERAL ELEMENTS */
@@ -356,18 +357,23 @@ h4 {
 .operations__icon--1 {
     background-color: var(--color-secondary-opacity);
 }
+
 .operations__icon--2 {
     background-color: var(--color-primary-opacity);
 }
+
 .operations__icon--3 {
     background-color: var(--color-tertiary-opacity);
 }
+
 .operations__icon--1 svg {
     fill: var(--color-secondary-darker);
 }
+
 .operations__icon--2 svg {
     fill: var(--color-primary);
 }
+
 .operations__icon--3 svg {
     fill: var(--color-tertiary);
 }
@@ -548,7 +554,7 @@ h4 {
 
 /* FOOTER */
 .footer {
-    padding: 10rem 3rem;
+    padding: 2.5rem 2.5rem 0.01rem 2.5rem;
     background-color: #37383d;
 }
 
@@ -576,15 +582,6 @@ h4 {
     margin-bottom: 5rem;
 }
 
-.footer__copyright {
-    font-size: 1.4rem;
-    color: #aaa;
-    text-align: center;
-}
-
-.footer__copyright .footer__link {
-    font-size: 1.4rem;
-}
 
 /* MODAL WINDOW */
 .modal {
