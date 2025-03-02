@@ -116,10 +116,51 @@ const stickyNav = function (entries) {
 };
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
-  threshold: 0,
-  rootMargin: `-${navHeight}px`,
+  threshold: 0, //кількість пікселів від лінії (що розділяє розділи) до появи хедера|| кількіль пікселів від верхньої точки view port
+  rootMargin: `-${navHeight}px`, //піднятя хедера над лінію появи (navHeight динамічна висота хедера )
 });
 headerObserver.observe(header);
+//!////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const allSection = document.querySelectorAll(".section");
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove("section--hidden");
+  console.log(observer.observe);
+  observer.unobserve(entry.target);
+};
+const sectionobserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+allSection.forEach(function (section) {
+  sectionobserver.observe(section);
+  section.classList.add("section--hidden");
+});
+//!////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//* Lazy loading img
+const imgTargets = document.querySelectorAll("img[data-src]");
+
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  // Replace src wth data-src
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener("load", function () {
+    entry.target.classList.remove("lazy-img");
+  });
+
+  observer.unobserve(entry.target);
+};
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: "200px",
+});
+imgTargets.forEach((img) => imgObserver.observe(img));
 //!////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //* Alert with use "mouseenter"
 // const h1 = document.querySelector("h1");
